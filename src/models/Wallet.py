@@ -2,6 +2,7 @@ from Crypto.PublicKey import RSA
 from Crypto.Signature import PKCS1_v1_5
 from src.models.BlockchainUtils import BlockchainUtils
 from src.models.Transaction import Transaction
+from src.models.Block import Block
 
 class Wallet:
   def __init__(self):
@@ -31,3 +32,11 @@ class Wallet:
     transaction.sign(signature)
 
     return transaction
+  
+  def create_block(self, transactions, last_hash, block_count):
+    block = Block(transactions, last_hash, self.public_key_export(), block_count)
+
+    signature = self.sign(block.toJson())
+    block.sign(signature)
+
+    return block
