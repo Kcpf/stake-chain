@@ -10,7 +10,14 @@ class Block:
     self.block_count = block_count
     self.timestamp = time.time()
     self.signature = ""
-  
+
+  @staticmethod
+  def genesis():
+    genesis_block = Block([], 'genesis_hash', 'genesis', 0)
+    genesis_block.timestamp = 0
+    
+    return genesis_block
+
   def toJson(self):
     data = {}
 
