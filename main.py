@@ -7,6 +7,8 @@ from src.models.Block import Block
 from src.models.Blockchain import Blockchain
 from src.models.BlockchainUtils import BlockchainUtils
 from src.models.AccountModel import AccountModel
+from src.models.Node import Node
 
 if __name__ == '__main__':
-  pass
+  node = Node()
+  
