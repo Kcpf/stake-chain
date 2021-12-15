@@ -1,5 +1,5 @@
-from src.models.PoS import ProofOfStake
-from src.models.Lot import Lot
+from stakechain.models.PoS import ProofOfStake
+from stakechain.models.Lot import Lot
 import string
 import random
 

@@ -1,5 +1,5 @@
-from src.models.Wallet import Wallet
-from src.models.BlockchainUtils import BlockchainUtils
+from stakechain.models.Wallet import Wallet
+from stakechain.models.BlockchainUtils import BlockchainUtils
 import requests
 
 if __name__ == "__main__":

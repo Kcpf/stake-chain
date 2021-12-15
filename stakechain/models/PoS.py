@@ -1,5 +1,5 @@
-from src.models.Lot import Lot
-from src.models.BlockchainUtils import BlockchainUtils
+from stakechain.models.Lot import Lot
+from stakechain.models.BlockchainUtils import BlockchainUtils
 
 class ProofOfStake:
   def __init__(self):

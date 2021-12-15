@@ -1,7 +1,7 @@
-from src.models.Block import Block
-from src.models.BlockchainUtils import BlockchainUtils
-from src.models.AccountModel import AccountModel
-from src.models.PoS import ProofOfStake
+from stakechain.models.Block import Block
+from stakechain.models.BlockchainUtils import BlockchainUtils
+from stakechain.models.AccountModel import AccountModel
+from stakechain.models.PoS import ProofOfStake
 
 class Blockchain:
   def __init__(self):

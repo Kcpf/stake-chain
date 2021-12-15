@@ -1,4 +1,4 @@
-from src.models.BlockchainUtils import BlockchainUtils
+from stakechain.models.BlockchainUtils import BlockchainUtils
 
 class Lot:
   def __init__(self, public_key, iteration, last_block_hash):

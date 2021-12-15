@@ -1,11 +1,11 @@
 import copy
-from src.models.TransactionPool import TransactionPool
-from src.models.Wallet import Wallet
-from src.models.Blockchain import Blockchain
-from src.models.SocketCommunication import SocketCommunication
-from src.models.BlockchainUtils import BlockchainUtils
-from src.models.Message import Message
-from src.models.NodeAPI import NodeAPI
+from stakechain.models.TransactionPool import TransactionPool
+from stakechain.models.Wallet import Wallet
+from stakechain.models.Blockchain import Blockchain
+from stakechain.socket.SocketCommunication import SocketCommunication
+from stakechain.models.BlockchainUtils import BlockchainUtils
+from stakechain.socket.Message import Message
+from stakechain.api.NodeAPI import NodeAPI
 
 class Node:
   def __init__(self, ip, port, key = None):

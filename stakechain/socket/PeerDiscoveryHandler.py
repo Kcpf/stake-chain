@@ -1,7 +1,7 @@
 import threading
 import time
-from src.models.Message import Message
-from src.models.BlockchainUtils import BlockchainUtils
+from stakechain.socket.Message import Message
+from stakechain.models.BlockchainUtils import BlockchainUtils
 
 class PeerDiscoveryHandler:
   def __init__(self, node):

@@ -1,8 +1,8 @@
 import json
 from p2pnetwork.node import Node
-from src.models.PeerDiscoveryHandler import PeerDiscoveryHandler
-from src.models.SocketConnector import SocketConnector
-from src.models.BlockchainUtils import BlockchainUtils
+from stakechain.socket.PeerDiscoveryHandler import PeerDiscoveryHandler
+from stakechain.socket.SocketConnector import SocketConnector
+from stakechain.models.BlockchainUtils import BlockchainUtils
 
 
 class SocketCommunication(Node):

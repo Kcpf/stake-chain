@@ -1,8 +1,8 @@
 from Crypto.PublicKey import RSA
 from Crypto.Signature import PKCS1_v1_5
-from src.models.BlockchainUtils import BlockchainUtils
-from src.models.Transaction import Transaction
-from src.models.Block import Block
+from stakechain.models.BlockchainUtils import BlockchainUtils
+from stakechain.models.Transaction import Transaction
+from stakechain.models.Block import Block
 
 class Wallet:
   def __init__(self):
