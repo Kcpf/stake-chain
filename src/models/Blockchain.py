@@ -1,12 +1,13 @@
 from src.models.Block import Block
 from src.models.BlockchainUtils import BlockchainUtils
 from src.models.AccountModel import AccountModel
-
+from src.models.PoS import ProofOfStake
 
 class Blockchain:
   def __init__(self):
     self.blocks = [Block.genesis()]
     self.account_model = AccountModel()
+    self.pos = ProofOfStake()
   
   def add_block(self, block):
     self.execute_transactions(block.transactions)
@@ -53,5 +54,43 @@ class Blockchain:
     receiver = transaction.receiver_public_key
     amount = transaction.amount
 
-    self.account_model.update_balance(sender, -amount)
-    self.account_model.update_balance(receiver, amount)
+    if transaction.type == 'STAKE':
+      if sender == receiver:
+        self.pos.update(sender, amount)
+        self.account_model.update_balance(sender, -amount)
+    else:
+      self.account_model.update_balance(sender, -amount)
+      self.account_model.update_balance(receiver, amount)
+  
+  def next_forger(self):
+    last_block_hash = BlockchainUtils.hash(self.blocks[-1].payload()).hexdigest()
+
+    return self.pos.forger(last_block_hash)
+  
+  def create_block(self, transactions_from_pool, forger_wallet):
+    covered_transactions = self.get_covered_transaction_set(transactions_from_pool)
+    self.execute_transactions(covered_transactions)
+
+    new_block = forger_wallet.create_block(
+      covered_transactions, 
+      BlockchainUtils.hash(self.blocks[-1].payload()).hexdigest(),
+      len(self.blocks)
+    )
+    self.blocks.append(new_block)
+    
+    return new_block
+  
+  def transaction_exists(self, transaction):
+    for block in self.blocks:
+      for block_transaction in block.transactions:
+        if transaction.equals(block_transaction): return True
+    
+    return False
+  
+  def forger_valid(self, block):
+    return self.pos.forger(block.last_hash) == block.forger
+  
+  def transactions_valid(self, transactions):
+    covered_transactions = self.get_covered_transaction_set(transactions)
+
+    return len(transactions) == len(covered_transactions)

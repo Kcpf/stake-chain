@@ -7,6 +7,14 @@ from src.models.Block import Block
 class Wallet:
   def __init__(self):
     self.key_pair = RSA.generate(2048)
+  
+  def from_key(self, file):
+    key = ''
+    
+    with open(file, 'r') as key_file:
+      key = RSA.import_key(key_file.read())
+    
+    self.key_pair = key
 
   def sign(self, data):
     data_hash = BlockchainUtils.hash(data)

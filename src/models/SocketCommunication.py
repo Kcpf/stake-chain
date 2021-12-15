@@ -35,8 +35,16 @@ class SocketCommunication(Node):
       self.peer_discovery_handler.handle_message(message)
     
     if message.message_type == 'TRANSACTION':
-      transaction = message.data
-      self.node.handle_transaction(transaction)
+      self.node.handle_transaction(message.data)
+    
+    if message.message_type == 'BLOCK':
+      self.node.handle_block(message.data)
+    
+    if message.message_type == 'BLOCKCHAINREQUEST':
+      self.node.handle_blockchain_request(connected_node)
+    
+    if message.message_type == 'BLOCKCHAIN':
+      self.node.handle_blockchain(message.data)
   
   def send(self, receiver, data):
     self.send_to_node(receiver, data)
